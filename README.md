@@ -37,8 +37,8 @@ HOST=smtp.gmail.com
 SERVICE=gmail
 EMAIL_PORT=587
 SECURE=true
-USER=userinmongodb
-PASS=mongodbdatabasepassword
+USER=userEmail
+PASS=gmailAPPkey
 DATABASE_URI=your_mongo_connection_string
 ```
 
