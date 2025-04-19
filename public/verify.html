@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        :root {
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --background: #f0f2f5;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .verification-card {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 12px 30px var(--shadow);
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .verification-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-container {
+            width: 120px;
+            height: 120px;
+            background-color: var(--success-light);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .checkmark {
+            stroke-dasharray: 180;
+            stroke-dashoffset: 180;
+            transform-origin: 50% 50%;
+            animation: drawCheck 1.2s ease-in-out forwards;
+        }
+
+        .circle {
+            stroke-dasharray: 260;
+            stroke-dashoffset: 260;
+            animation: drawCircle 1s ease-in-out forwards;
+        }
+
+        @keyframes drawCheck {
+            0% {
+                stroke-dashoffset: 180;
+            }
+            60% {
+                stroke-dashoffset: 0;
+                transform: scale(1);
+            }
+            80% {
+                transform: scale(1.2);
+            }
+            100% {
+                stroke-dashoffset: 0;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes drawCircle {
+            0% {
+                stroke-dashoffset: 260;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-out 0.8s forwards;
+        }
+
+        p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-out 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .verification-card {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .icon-container {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-card">
+        <div class="icon-container">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle class="circle" cx="40" cy="40" r="38" fill="none" stroke="#10b981" stroke-width="4" />
+                <polyline class="checkmark" points="25,40 38,55 58,30" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </div>
+        <h1>Email is Verified</h1>
+        <p>Your email address has been successfully verified. You can now access your account.</p>
+    </div>
+
+    <script>
+        // Add subtle entrance animation for the card
+        window.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.verification-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Restart animation on click for demo purposes
+            card.addEventListener('click', () => {
+                const circle = document.querySelector('.circle');
+                const checkmark = document.querySelector('.checkmark');
+                
+                circle.style.animation = 'none';
+                checkmark.style.animation = 'none';
+                
+                setTimeout(() => {
+                    circle.style.animation = 'drawCircle 1s ease-in-out forwards';
+                    checkmark.style.animation = 'drawCheck 1.2s ease-in-out forwards';
+                }, 10);
+            });
+        });
+    </script>
+</body>
+</html>
