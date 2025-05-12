@@ -6,8 +6,8 @@ This is the backend service for the **Polling App**, built using **Node.js** and
 
 - **Node.js**
 - **Express.js**
-- **MongoDB** (assumed)
-- **Mongoose** (if ODM is used)
+- **MongoDB** 
+- **Mongoose** 
 - **dotenv** for environment configuration
 
 ## 🚀 Getting Started
